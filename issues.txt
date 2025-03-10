@@ -1,0 +1,4 @@
+1. Change Progress bar to a more advanced one
+2. Complete Skills Card
+3. Remove duplicate interfaces (useStudentById & AboutStudentsPage)
+4. Mentor Id to Mentor name
