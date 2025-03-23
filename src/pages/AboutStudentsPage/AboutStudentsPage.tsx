@@ -9,19 +9,22 @@ import { Career } from './sections/Career';
 
 export default function AboutStudentsPage() {
   const { id } = useParams();
+  const { data: student, isLoading, error, refetch } = useStudentById(id!);
 
-  const { data: student, isLoading, error } = useStudentById(id ?? "");
+  if (!id) return (
+    <p>Invalid student ID.</p>
+  );
 
-  if (!id) return <p>Invalid student ID.</p>;
+
 
   if (isLoading) return <p>Loading...</p>;
   if (error || !student) return <p>Error fetching student details.</p>;
 
-  console.log(student);
+  console.log("St", student);
 
   const tabs = [
     { id: "basic_details", label: "Basic Details", content: <BasicDetails student={student.student} educations={student.education} skills={student.skills} extracurriculars={student.extracurricularsData} /> },
-    { id: "mentor_observations", label: "Mentor Observations", content: <MentorObservations observations={student.observations} /> },
+    { id: "mentor_observations", label: "Mentor Observations", content: <MentorObservations observations={student.observations} student={student.student} refetch={refetch}/> },
     { id: "career_recommendations", label: "Career Recommendations", content: <Career /> },
   ];
 

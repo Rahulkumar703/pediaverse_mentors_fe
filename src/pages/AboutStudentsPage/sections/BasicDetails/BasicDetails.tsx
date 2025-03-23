@@ -85,7 +85,7 @@ export default function BasicDetails({
     //     ],
     // };
 
-    console.log(skills);
+    console.log(student);
 
     return (
         <div className='flex flex-row w-full justify-between'>

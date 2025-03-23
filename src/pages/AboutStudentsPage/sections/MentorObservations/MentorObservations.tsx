@@ -2,12 +2,22 @@ import { Button } from '@/components/ui/button'
 import { SkillsType } from './types';
 import Timeline from '@/components/Timeline/Timeline';
 import { StudentDetailsType } from '@/hooks/students/useStudentById';
+import { DialogModal } from '@/components/DialogModal';
+import { useState } from 'react';
+import ObservationForm from './form';
 
-type MentorObservationsProps = Pick<StudentDetailsType, 'observations'>
+type MentorObservationsProps = Pick<StudentDetailsType, 'observations' | 'student'> & {
+  refetch: () => void;
+};
 
 export default function MentorObservations({
   observations,
+  student,
+  refetch,
 }: MentorObservationsProps) {
+
+  const [open, setOpen] = useState<boolean>(false);
+  console.log(observations);
 
   const skills: SkillsType[] = [
     {
@@ -54,7 +64,7 @@ export default function MentorObservations({
     <div className='flex flex-col w-full'>
       <div className='w-full justify-between items-center flex flex-row'>
         <p className='font-bold text-light-300 text-lg'>Mentor Observations</p>
-        <Button className='bg-primary-main text-white'>
+        <Button className='bg-primary-main text-white hover:bg-primary-main/90' onClick={() => setOpen(true)}>
           Add Observation
         </Button>
       </div>
@@ -72,8 +82,11 @@ export default function MentorObservations({
       </div>
       <div className=' flex flex-col gap-2'>
         <p className='text-light-300 text-lg font-semibold'>Observation History</p>
-        <Timeline observations={observations}/>
+        <Timeline observations={observations} />
       </div>
+      <DialogModal open={open} setOpen={setOpen} title='Observation' description='Add a new observation'>
+        <ObservationForm refetch={refetch} setOpen={setOpen} studentId={student.id!}/>
+      </DialogModal>
     </div>
   );
 }

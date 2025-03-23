@@ -9,7 +9,7 @@ export default function StudentCardExpanded({ student }: { student: StudentType 
     return (
         <div className='p-5 flex flex-row justify-between w-full gap-5 shadow-sm border border-light-100 rounded-2xl cursor-pointer bg-white' onClick={() => navigate('/about-students')}>
             <div className='flex flex-row justify-start items-center gap-5'>
-                <img src='https://randomuser.me/api/portraits/men/1.jpg' className='h-16 w-16 rounded-full' />
+                <img src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png' className='h-16 w-16 rounded-full' />
                 <div className='flex flex-col items-start jsutify-center'>
                     <p className='font-bold'>{student.name}</p>
                     <p className='text-light-200'>{student.rollNo} • {student.course}</p>
