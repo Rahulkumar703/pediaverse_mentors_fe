@@ -3,8 +3,6 @@ export const getMonthAndYear = (dateString: string | undefined) => {
         return {
             month: 'March',
             year: 2001
-        };
-    }
     const date = new Date(dateString);
 
     const monthNames = [
