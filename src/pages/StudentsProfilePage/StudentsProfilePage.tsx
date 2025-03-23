@@ -2,38 +2,9 @@ import { StudentCardProfile } from '@/components/Cards'
 import { useStudents } from '@/hooks/students/useStudents'
 import { StudentType } from '@/types'
 
-// Sample fallback data in case you want to use it directly
-const FALLBACK_STUDENTS: StudentType[] = [
-  {
-    id: "1",
-    name: "John Doe",
-    rollNo: "CS001",
-    course: "Computer Science",
-    age: 20,
-    mail: "john.doe@university.com",
-    location: "New York",
-    phoneNumber: "+1-555-0101",
-    courseYear: 2
-  },
-  {
-    id: "2",
-    name: "Jane Smith",
-    rollNo: "CS002",
-    course: "Computer Science",
-    age: 21,
-    mail: "jane.smith@university.com",
-    location: "Boston",
-    phoneNumber: "+1-555-0102",
-    courseYear: 3
-  }
-]
 
 export default function StudentsProfilePage() {
   const { data: students, isLoading, error } = useStudents()
-
-  // Use fallback data if no students are returned and there's no error
-  const displayStudents = FALLBACK_STUDENTS;
-
   console.log('Students data:', students)
 
   if (isLoading) {
@@ -54,8 +25,8 @@ export default function StudentsProfilePage() {
 
   return (
     <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 p-5">
-      {Array.isArray(displayStudents) && displayStudents.length > 0 ? (
-        displayStudents.map((student: StudentType) => (
+      {students && students.length > 0 ? (
+        students.map((student: StudentType) => (
           <StudentCardProfile 
             key={student.id || student.rollNo} 
             id={student.id || ''} 
