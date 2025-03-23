@@ -1,4 +1,10 @@
-export const getMonthAndYear = (dateString: string) => {
+export const getMonthAndYear = (dateString: string | undefined) => {
+    if (!dateString) {
+        return {
+            month: 'March',
+            year: 2001
+        };
+    }
     const date = new Date(dateString);
 
     const monthNames = [
