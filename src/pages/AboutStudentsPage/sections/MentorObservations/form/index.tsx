@@ -23,7 +23,10 @@ export default function ObservationForm(
     }: ObservationFormProps
 ) {
 
-    const { mutate, isPending, isError } = useCreateData<ObservationType>("/observations");
+    const { mutate, 
+        // isPending, 
+        // isError
+     } = useCreateData<ObservationType>("/observations");
 
     const form = useForm<z.infer<typeof observationFormSchema>>({
         resolver: zodResolver(observationFormSchema),

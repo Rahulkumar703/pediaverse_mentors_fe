@@ -1,4 +1,10 @@
-export const getMonthAndYear = (dateString: string) => {
+export const getMonthAndYear = (dateString: string | undefined) => {
+    if(!dateString){
+        return {
+            month: 'September',
+            year: '2022' 
+        };
+    }
     const date = new Date(dateString);
 
     const monthNames = [
