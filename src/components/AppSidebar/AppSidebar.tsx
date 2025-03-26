@@ -22,10 +22,10 @@ export default function AppSideBar() {
   const navigate = useNavigate();
   const [navItems] = useState<any[]>([
     {
-      url: '/',
-      title: 'Students Profiles',
-      icon: User
-    }
+      url: "/",
+      title: "Students Profiles",
+      icon: User,
+    },
   ]);
 
   return (
@@ -39,15 +39,17 @@ export default function AppSideBar() {
         </div>
       </SidebarHeader>
       <SidebarContent className="mt-5">
-        <SidebarGroup>
+        <SidebarGroup className="p-0">
           <SidebarGroupContent>
-            <SidebarMenu className="min-h-[200px] justify-start flex gap-2">
+            <SidebarMenu className="justify-start flex gap-2">
               {navItems.map((item) => (
                 <SidebarMenuItem
                   key={item.title}
                   className={cn(
-                    "hover:bg-gray-200 rounded-lg hover:text-black",
-                    location.pathname === item.url ? "bg-primary-main text-white" : "",
+                    "hover:bg-gray-100 hover:text-black border-4 border-solid border-transparent",
+                    location.pathname === item.url
+                      ? " border-r-primary-main bg-gray-200"
+                      : "bg-white",
                     open && "py-1"
                   )}
                 >
@@ -75,7 +77,7 @@ export default function AppSideBar() {
           )}
         >
           {open && <h1>Logout</h1>}
-          <LogOut size={24} />
+          <LogOut className="w-6 h-6" />
         </div>
       </SidebarFooter>
     </Sidebar>
